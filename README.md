@@ -32,5 +32,5 @@ const App: React.FC = () => {
 ```
 
 ## Contributors
-<div><a href="https://github.com/159668929"><img width="40px;" src="https://avatars.githubusercontent.com/u/159668929"></a>
-<a href="https://github.com/164827959"><img width="40px;" src="https://avatars.githubusercontent.com/u/164827959"></a></div>
+<div><a href="https://github.com/TTD-T" alt="TTD-T"><img width="40px;" src="https://avatars.githubusercontent.com/u/159668929"></a>
+<a href="https://github.com/LinqinZhong"><img width="40px;" src="https://avatars.githubusercontent.com/u/164827959" alt="LinqinZhong"></a></div>

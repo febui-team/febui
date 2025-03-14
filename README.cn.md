@@ -42,10 +42,10 @@ const App: React.FC = () => {
 
 ## 贡献者
 <div style="display: flex; gap: 8px;">
-  <a href="https://github.com/159668929">
-    <img width="40" src="https://avatars.githubusercontent.com/u/159668929" alt="贡献者" />
+  <a href="https://github.com/TTD-T">
+    <img width="40" src="https://avatars.githubusercontent.com/u/159668929" alt="TTD-T" />
   </a>
-  <a href="https://github.com/164827959">
-    <img width="40" src="https://avatars.githubusercontent.com/u/164827959" alt="贡献者" />
+  <a href="https://github.com/LinqinZhong">
+    <img width="40" src="https://avatars.githubusercontent.com/u/164827959" alt="LinqinZhong" />
   </a>
 </div>
