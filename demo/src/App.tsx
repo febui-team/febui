@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import 'febui-react/dist/index.css'
 import { FButton, toast, FLoading, FSwitch,FRadio } from 'febui-react'
 
 function App() {
