@@ -1,0 +1,54 @@
+.progress-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  position: relative;
+
+  .progress-bar {
+    flex-shrink: 0;
+    width: calc(100% - 5rem);
+    height: var(--height);
+    border-radius: var(--height);
+    background: var(--text-color-14);
+    overflow: hidden;
+
+    .value {
+      transition: 0.5s;
+      height: var(--height);
+      border-radius: var(--height);
+
+      /* 不同颜色 */
+      // 主题色
+      &.primary {
+        background: var(--primary-color-8);
+      }
+
+      // 安全色
+      &.safe {
+        background: var(--safe-color-8);
+      }
+
+      // 危险色
+      &.danger {
+        background: var(--danger-color-8);
+      }
+
+      // 警告色
+      &.warn {
+        background: var(--warn-color-8);
+      }
+    }
+  }
+
+
+  .text {
+    &.inner {
+      color: var(--text-color-15);
+      left: 1rem;
+      margin: auto;
+      position: absolute;
+    }
+  }
+}

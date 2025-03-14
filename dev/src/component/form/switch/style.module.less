@@ -1,0 +1,111 @@
+@import '../../../theme/canon/style/mixin.less';
+
+.switch{
+
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &.disabled{
+    cursor: not-allowed;
+    opacity: .6;
+  }
+
+  .active-text{
+    margin-left: .3571rem;
+    &.active{
+      color: var(--primary-color-8);
+    }
+  }
+  .inactive-text{
+    margin-right: .3571rem;
+    &.active{
+      color: var(--primary-color-8);
+    }
+  }
+
+  .core {
+
+    --padding:.2143rem;
+    --switch-on-color:var(--primary-color-8);
+    --switch-off-color:var(--info-color-4);
+  
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    width: fit-content;
+    min-width: var(--w);
+    height: var(--h);
+    border-radius: var(--h);
+    background: var(--switch-on-color);
+    padding: var(--padding);
+    color: var(--text-color-16);
+
+    .inline-active{
+      margin-right: calc(var(--h) + var(--padding));
+      .singleOmit();
+    }
+    .inline-inactive{
+      margin-left: calc(var(--h) + var(--padding));
+      .singleOmit();
+    }
+  
+    // 中间的控制器
+    .action {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: var(--padding);
+      width: var(--h);
+      height: var(--h);
+      background-color: #fff;
+      border-radius: 50%;
+      transition: all var(--transition-duration);
+  
+      &.right {
+        left: var(--padding);
+      }
+    
+      &.left {
+        left: calc(100% - var(--h) - var(--padding));
+      }
+
+      .loading{
+        width: 60%;
+        height: 60%;
+        color: var(--text-color-13);
+      }
+    }
+
+    &.nofit{
+      width: var(--w);;
+    }
+  
+    &.on{
+      background: var(--switch-on-color);
+    }
+    &.off{
+      background: var(--switch-off-color);
+    }
+  
+  
+    &.medium {
+      --w: 2.8571rem;
+      --h: 1.4286rem;
+    }
+  
+    &.large {
+      --w: 3.5714rem;
+      --h: 1.7143rem;
+    }
+  
+    &.small {
+      --w: 2.1429rem;
+      --h: 1.1429rem;
+    }
+  
+    
+    
+  }
+}

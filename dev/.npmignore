@@ -1,0 +1,10 @@
+/node_modules/
+!/dist/
+/src/
+/public/
+/plugins/
+/types/
+craco.config.js
+index.ts
+rollup.config.msj
+tsconfig.json

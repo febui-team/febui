@@ -1,0 +1,88 @@
+.dialog {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+
+  .main {
+    max-width: 60%;
+    min-width: 30rem;
+    min-height: 12rem;
+    background: var(--text-color-16);
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    bottom: 15%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 0.4rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+    transform: translateY(2rem);
+
+    .head {
+      user-select: none;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text-color-1);
+      }
+
+      .close-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        cursor: pointer;
+        color: var(--text-color-6);
+        padding: 0.2rem;
+
+        &:hover {
+          border-radius: 0.2rem;
+          background: var(--text-color-15);
+        }
+      }
+    }
+
+    .body {
+      margin-top: 10px;
+      flex: 1;
+      min-height: 5rem;
+
+      .content {
+        color: var(--text-color-6);
+      }
+    }
+
+    .footer {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+  }
+
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s;
+
+    .main {
+      transform: translateY(0);
+      transition: 0.2s;
+    }
+  }
+}

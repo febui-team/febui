@@ -1,0 +1,89 @@
+.tabs-wrapper {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    user-select: none;
+
+    .nav {
+        position: absolute;
+        width: 2rem;
+        height: 3rem;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--text-color-16);
+        cursor: pointer;
+        padding: .5rem;
+        box-sizing: border-box;
+        user-select: none;
+
+        &:hover {
+            background: var(--text-color-15);
+        }
+
+        &.pre {
+            left: 0;
+            box-shadow: .1rem 0 .5rem var(--text-color-13);
+        }
+
+        &.next {
+            right: 0;
+            box-shadow: -.1rem 0 .5rem var(--text-color-13);
+        }
+    }
+    
+    .scroll {
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tabs {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            background: var(--text-color-16);
+            box-sizing: border-box;
+            position: relative;
+
+            .tab-item {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 3rem;
+                padding: .5rem 1rem .65rem 1rem;
+                cursor: pointer;
+                height: 3rem;
+                box-sizing: border-box;
+                flex-wrap: nowrap;
+                text-wrap: nowrap;
+                color: var(--text-color-9);
+
+                span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                &:hover {
+                    background: var(--text-color-15);
+                }
+
+                &.is-active {
+                    color: var(--primary-color-8);
+                }
+            }
+
+            .underline {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: .25rem;
+                border-radius: .1rem;
+                background: var(--primary-color-8);
+            }
+        }
+    }
+}

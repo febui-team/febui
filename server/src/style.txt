@@ -1,0 +1,19 @@
+定义新颜色
+dc
+less,css
+--${t:name}-color-16: #FFF
+--${t:name}-color-15: #FFF
+--${t:name}-color-14: #FFF
+--${t:name}-color-13: #FFF
+--${t:name}-color-12: #FFF
+--${t:name}-color-11: #FFF
+--${t:name}-color-10: #FFF
+--${t:name}-color-9: #FFF;
+--${t:name}-color-8: #FFF;
+--${t:name}-color-7: #FFF;
+--${t:name}-color-6: #FFF;
+--${t:name}-color-5: #FFF;
+--${t:name}-color-4: #FFF;
+--${t:name}-color-3: #FFF;
+--${t:name}-color-2: #FFF;
+--${t:name}-color-1: #FFF;

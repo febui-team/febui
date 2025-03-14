@@ -1,0 +1,13 @@
+定义调试
+dt
+typescriptreact
+/**
+ * @description ${1:我的组件}（${2:MyComponent}）
+ * @file ${3:xxx}.tsx
+ * @author ${AUTHOR}
+ * @date ${CURRENT_YEAR}/${CURRENT_MONTH}/${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}
+ */
+import React, { useState } from "react"
+export const ${2}Test = function () {
+  return (<>${2}</>)
+}
