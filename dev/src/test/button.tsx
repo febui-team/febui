@@ -8,8 +8,7 @@ import React, { useState } from "react"
 import { FButton } from "#/base/button/FButton"
 import { ActionFn } from "@/types/action"
 import { ButtonShape, ButtonSize } from "@/types/button"
-import { ButtonType } from "dist/@types/src/types/button"
-import { Variant } from "@/types/base"
+import { InteractionType, Variant } from "@/types/base"
 
 // 不同形状
 export const ShapeTest = function () {
@@ -43,7 +42,7 @@ export const TypeTest = function () {
     <>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
         {['default', 'primary', 'danger', 'safe', 'warn'].map(type => (
-          <FButton key={type} type={type as ButtonType}>{type}</FButton>
+          <FButton key={type} type={type as InteractionType}>{type}</FButton>
         ))}
       </div>
     </>
