@@ -1,26 +1,16 @@
-import React, { ReactElement } from "react";
+import React, { createElement, useLayoutEffect, useState } from "react";
 import styles from './style.module.less'
 import { classnames } from "@/utils/class.util";
 import { FButton } from '#/base/button/FButton';
 import { FIconClose } from "+/FIconClose";
-import { FebProps } from "@/types/component";
-type Props = FebProps<{
-  onClickModal?: () => void,
-  onClose?: () => void,
-  onCancel?: () => void,
-  onConfirm?: () => void,
-  title?: string,
-  content?: string,
-  header?: ReactElement | ReactElement[],
-  footer?: ReactElement | ReactElement[],
-  visible?: boolean
-}>
+import { FDialogProps } from "./types";
+
 /**
  * 我的组件
  * @author linqin.zhong
  * @date 2025/01/29 14:25:47
  */
-export const FDialog: React.FC<Props> = function (
+export const FDialog: React.FC<FDialogProps> = function (
   this: any,
   {
     title = '标题',
@@ -29,12 +19,24 @@ export const FDialog: React.FC<Props> = function (
     footer,
     visible,
     children,
+    confirmText = '确认',
+    cancelText = '取消',
+    confirmType = 'primary',
+    cancelType = 'default',
+    confirmVariant = 'base',
+    cancelVariant = 'base',
+    titleIcon,
+    titleIconColor,
     onConfirm,
     onCancel,
     onClose,
     onClickModal
   }
 ) {
+  const [isVisible, setIsVisible] = useState<boolean | undefined>(false)
+  useLayoutEffect(() => {
+    setIsVisible(visible)
+  }, [visible])
   let dialog: EventTarget | null = null
   return <div ref={(t) => { dialog = t }} onClick={(e) => {
     if (e.target === dialog) {
@@ -44,13 +46,22 @@ export const FDialog: React.FC<Props> = function (
   }} className={
     classnames(
       styles['dialog'],
-      visible && styles['visible']
+      isVisible && styles['visible']
     )}>
     <div className={classnames(styles['main'])}>
       <div className={classnames(styles['head'])}>
         {
           header || <>
-            <div className={styles['title']}>{title}</div>
+            <div className={styles['title']}>
+              {titleIcon && createElement(titleIcon, {
+                className: styles['title-icon'],
+                style: {
+                  color: titleIconColor
+                }
+              } as any
+              )}
+              {title}
+            </div>
             {
               onClose && <FIconClose onClick={(e) => {
                 e.stopPropagation()
@@ -67,19 +78,20 @@ export const FDialog: React.FC<Props> = function (
       </div>
       {
         footer
-        || (onCancel && onConfirm &&
+        || ((onCancel || onConfirm) &&
           <div className={classnames(styles['footer'])}>
             {
               onCancel && <FButton onClick={(e) => {
                 e.stopPropagation()
                 onCancel && onCancel()
-              }} variant="outline" type="default">取消</FButton>
+              }} variant={cancelVariant} type={cancelType}>{cancelText
+                }</FButton>
             }
             {
-              onConfirm && <FButton onClick={(e) => {
+              onConfirm && <FButton variant={confirmVariant} type={confirmType} onClick={(e) => {
                 e.stopPropagation()
                 onConfirm && onConfirm()
-              }} type="primary">确定</FButton>
+              }}>{confirmText}</FButton>
             }
           </div>
         )

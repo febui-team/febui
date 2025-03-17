@@ -11,3 +11,10 @@ export type Size =
   | "medium" // 中等
   | "large" // 大
   | "small"; // 小
+
+// 组件形态
+export type Variant =
+| "base" // 填充
+| "outline" // 实线边框
+| "dashed" // 虚线边框
+| "text"; //纯文本

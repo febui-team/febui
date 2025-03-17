@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { FunctionComponent, ReactNode } from "react"
 import { OnClickFn } from "./action"
 
 export type FebProps<T = {}, E = HTMLElement> = T & {
@@ -7,4 +7,7 @@ export type FebProps<T = {}, E = HTMLElement> = T & {
   style?: React.CSSProperties & any,
   onClick?: OnClickFn,
   ref?: React.RefObject<E> | ((instance: ReactNode | null) => void)
+}
+export interface FebIconComponent<T = {}> extends FunctionComponent<T>{
+
 }

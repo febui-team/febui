@@ -27,7 +27,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    transition: 0.2s;
+    transition: 0.4s;
     transform: translateY(2rem);
 
     .head {
@@ -40,6 +40,14 @@
         font-size: 1.2rem;
         font-weight: bold;
         color: var(--text-color-1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .title-icon {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
       }
 
       .close-icon {
@@ -78,11 +86,17 @@
   &.visible {
     visibility: visible;
     opacity: 1;
-    transition: 0.3s;
+    transition: 0.2s;
 
     .main {
       transform: translateY(0);
       transition: 0.2s;
     }
   }
+}
+
+.dialog-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
 }

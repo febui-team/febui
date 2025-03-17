@@ -8,6 +8,9 @@ import React, { useState } from "react"
 import { FDialog } from "#/notice/dialog/FDialog"
 import { FButton } from "#/base/button/FButton"
 import { toast } from "@/api/toast"
+import { febDialog } from "@/api/dialog"
+import { FIconUser } from "+/FIconUser"
+import { FIconSuccessFilled } from "+/FIconSuccessFilled"
 
 // 基础使用
 export const FDialogTest = function () {
@@ -118,4 +121,109 @@ export const FooterTest = function () {
       </div>
     </FDialog>
   </div>)
+}
+
+// API调用
+export const ApiTest = function () {
+  return (<div style={{display: 'flex', gap: 10, flexWrap: 'wrap'}}>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '这是标题',
+        content: '这是内容',
+      }).then(() => {
+        toast('点击确定')
+      })
+    }}>常规调用</FButton>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '这是标题',
+        content: '这是内容',
+        showClose: true
+      }).then((res) => {
+        toast(res ? '确定' : '关闭')
+      })
+    }}>显示关闭按钮</FButton>
+     <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '这是标题',
+        content: '这是内容',
+        showCancel: true
+      }).then((res) => {
+        toast(res ? '确定' : '取消')
+      })
+    }}>显示取消按钮</FButton>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '这是标题',
+        content: '这是内容',
+        showCancel: true,
+        throwReject: true
+      }).then(() => {
+        toast('点击确定')
+      }).catch(() => {
+        toast.fail('被拒绝')
+      })
+    }}>捕捉拒绝事件</FButton>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '这是标题',
+        content: '这是内容',
+        showCancel: true,
+        confirmText: '批了',
+        cancelText: '朕不许'
+      })
+    }}>自定义按钮文字</FButton>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '警告',
+        content: '真的要删除这个文件吗？',
+        showCancel: true,
+        confirmType: 'danger',
+        cancelType: 'safe',
+        confirmVariant: 'outline',
+      })
+    }}>自定义按钮样式</FButton>
+    <FButton variant="outline" type="primary" onClick={() => {
+      febDialog({
+        title: '新好友提醒',
+        titleIcon: FIconUser,
+        titleIconColor: 'var(--primary-color-8)',
+        content: '小明请求加您为好友。',
+        showCancel: true,
+        confirmText: '通过',
+        cancelText: '拒绝'
+      })
+    }}>标题带图标</FButton>
+  </div>)
+}
+
+// API快捷调用
+export const QuickConvenientTest = function (){
+  return (<div style={{display: 'flex', gap: 10, flexWrap: 'wrap'}}>
+    <FButton variant="outline" type="primary" onClick={
+      () => {
+        febDialog.alert('请求成功','审批已提交，预计7个工作日内处理，请耐心等待')
+      }
+    }>提醒</FButton>
+    <FButton variant="outline" type="primary" onClick={
+      () => {
+        febDialog.confirm('提醒','您的审批已通过，是否前往查看？','primary')
+      }
+    }>主题询问</FButton>
+    <FButton variant="outline" type="default" onClick={
+      () => {
+        febDialog.confirm('亲爱的用户：','您觉得我们的组件库好用吗，好用的话麻烦给个好评可以不？','default')
+      }
+    }>默认询问</FButton>
+    <FButton variant="outline" type="warn" onClick={
+      () => {
+        febDialog.confirm('警告','你的网络环境不安全，确定要继续操作吗？','warn')
+      }
+    }>警告询问</FButton>
+    <FButton variant="outline" type="danger" onClick={
+      () => {
+        febDialog.confirm('警告','删除后图片不可恢复，请确定是否继续？','danger')
+      }
+    }>危险询问</FButton>
+    </div>)
 }

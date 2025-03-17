@@ -7,7 +7,9 @@
 import React, { useState } from "react"
 import { FButton } from "#/base/button/FButton"
 import { ActionFn } from "@/types/action"
-import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from "@/types/button"
+import { ButtonShape, ButtonSize } from "@/types/button"
+import { ButtonType } from "dist/@types/src/types/button"
+import { Variant } from "@/types/base"
 
 // 不同形状
 export const ShapeTest = function () {
@@ -54,7 +56,7 @@ export const VariantTest = function () {
     <>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
         {['base', 'outline', 'dashed', 'text'].map(variant => (
-          <FButton key={variant} variant={variant as ButtonVariant}>{variant}</FButton>
+          <FButton key={variant} variant={variant as Variant}>{variant}</FButton>
         ))}
       </div>
     </>

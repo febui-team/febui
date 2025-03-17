@@ -6,16 +6,17 @@ import throttle from 'lodash.throttle'
 import { isUndefined } from '@/utils/type.util'
 import { FLoading } from '#/base/loading/FLoading'
 import { OnClickFn } from '@/types/action'
-import { ButtonType, ButtonVariant, ButtonShape, ButtonSize } from '@/types/button'
+import { ButtonShape, ButtonSize } from '@/types/button'
 import { FebProps } from '@/types/component'
+import { InteractionType, Variant } from '@/types/base'
 
 
 // 组件属性
 type Props = FebProps<{
   // 类型
-  type?: ButtonType
+  type?: InteractionType
   // 形态
-  variant?: ButtonVariant
+  variant?: Variant
   // 形状
   shape?: ButtonShape
   // 大小
