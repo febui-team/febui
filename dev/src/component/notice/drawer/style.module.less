@@ -1,0 +1,140 @@
+.drawer-wrapper {
+  inset: 0;
+  position: fixed;
+  align-items: stretch;
+  display: none;
+
+  .drawer {
+    display: flex;
+    background: white;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    .header {
+      width: 100%;
+      flex-shrink: 0;
+      flex-basis: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .title{
+        font-weight: 1000;
+      }
+      .close-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        cursor: pointer;
+        color: var(--text-color-6);
+        padding: 0.2rem;
+
+        &:hover {
+          border-radius: 0.2rem;
+          background: var(--text-color-15);
+        }
+      }
+    }
+
+    .body {
+      width: 100%;
+      flex: 1;
+    }
+
+    .footer {
+      flex-basis: 3rem;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      flex-direction: row-reverse;
+      gap: 1rem;
+    }
+  }
+
+  &.show-modal {
+    background: rgba(0.5, 0.5, 0.5, 0.5);
+  }
+
+  &.rtl {
+    --hiden-status: translateX(100%);
+    --appear-status: translateX(0);
+    flex-direction: row-reverse;
+
+    .drawer {
+      transform: var(--hiden-status);
+      transition: 0.3s;
+    }
+
+  }
+
+  &.ltr {
+    --hiden-status: translateX(-100%);
+    --appear-status: translateX(0);
+    flex-direction: row;
+
+    .drawer {
+      transform: var(--hiden-status);
+      transition: 0.3s;
+    }
+  }
+
+  &.ttb {
+    --hiden-status: translateY(-100%);
+    --appear-status: translateY(0);
+    flex-direction: column;
+
+    .drawer {
+      transform: var(--hiden-status);
+      transition: 0.3s;
+    }
+  }
+
+  &.btt {
+    --hiden-status: translateY(100%);
+    --appear-status: translateY(0);
+    flex-direction: column-reverse;
+
+    .drawer {
+      transform: var(--hiden-status);
+      transition: 0.3s;
+    }
+  }
+
+  &.going-to-hide {
+    display: flex;
+  }
+
+  &.appearing {
+    animation: fadein 0.1s;
+  }
+
+  &.visible {
+    display: flex;
+
+    .drawer {
+      transform: translateX(0) translateY(0);
+      animation: appear 0.3s;
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes appear {
+  from {
+    transform: var(--hiden-status);
+  }
+
+  to {
+    transform: var(--appear-status);
+  }
+}
