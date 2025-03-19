@@ -17,7 +17,7 @@ type Props = FebProps<{
  */
 export const FIcon:React.FC<Props> = function ({onClick,style,className,name,path,ref}) {
   const symbol = new FebIconSymbol(name, path)
-  return <div ref={ref as any} onClick={onClick} style={style} className={classnames(styles.icon, styles.icon, className)}>
+  return <div ref={ref as any} onClick={onClick} style={style} className={classnames(className)}>
     <svg style={{ width: '100%', height: '100%' }} aria-hidden="true"><use xlinkHref={`#${symbol.id}`}></use></svg>
   </div>
 }

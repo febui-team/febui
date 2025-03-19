@@ -55,9 +55,9 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
                         }
                     }} />
                 },
-                headTemplate: <FCheckbox onClick={() => {
+                headTemplate: <FCheckbox  onClick={() => {
                     setSelectRow(selectRow.length > 0 || !data ? [] : [...data])
-                }} checked={selectRow.length > 0} />
+                }} indeterminate={selectRow.length > 0} />
             })
         } else if (select === 'single') {
             s.push({
