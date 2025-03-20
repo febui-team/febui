@@ -1,4 +1,5 @@
 import { FebProps } from "@/types/component";
+import { ReactNode } from "react";
 
 export type FDrawerDireaction = "rtl" | "ltr" | "ttb" | "btt";
 export type FDrawerProps = FebProps<{
@@ -26,4 +27,8 @@ export type FDrawerProps = FebProps<{
   cancelText?: string
   // 确认
   onConfirm?: () => void
+  // 标题
+  title?: string,
+  // 内容
+  content?: ReactNode
 }>;

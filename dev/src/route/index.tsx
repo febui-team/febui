@@ -65,7 +65,7 @@ export const FebRoutes = function () {
         <div id="feb-ui-demo" style={{
             height: '100vh',
             width: '100vw',
-            background: "linear-gradient(to right bottom, var(--text-color-16), var(--text-color-15), var(--text-color-16))",
+            background: "var(--text-color-16)",
             overflowY: 'scroll',
             overflowX: 'hidden'
         }}>
@@ -101,7 +101,9 @@ export const FebRoutes = function () {
                         }} group items={menus}></FMenu>
                     }
                 </FLayoutAside>
-                <FLayoutContent>
+                <FLayoutContent style={{
+                    padding: 50
+                }}>
                     <div>
                         {useRoutes(routes)}
                         <div onClick={() => {

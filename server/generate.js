@@ -7,9 +7,11 @@
 const fs = require("fs");
 const path = require("path");
 module.exports = async () => {
-  const dirPath = path.resolve(__dirname,"../dev/src/test");
+  const dirPath = path.resolve(__dirname, "../dev/src/test");
   const dirs = fs.readdirSync(dirPath);
-  const imports = [];
+  const imports = [
+    "import {DemoItem} from './DemoItem'"
+  ];
   const routes = [];
   let id = 1;
   dirs.forEach((fileName, i) => {
@@ -24,23 +26,36 @@ module.exports = async () => {
             .replaceAll(/[\r|\n|\s+]/g, "")
         : name;
     const ip = "../test/" + name;
-    const exports = value.matchAll(/export\s+const\s+[A-Z][a-zA-Z0-9]*/g);
+    const exports = [...value.matchAll(/export\s+const\s+[A-Z][a-zA-Z0-9]*/g)];
     const components = [];
-
-    for (let export0 of exports) {
+    for (let i = 0; i < exports.length ; i++) {
+      const export0 = exports[i];
+      const export1 = exports[i+1]
       const cname = `Component${id++}`;
       let v = export0[0];
       let title = undefined;
 
       const i1 = value.lastIndexOf("\n", export0.index);
       const i2 = value.lastIndexOf("\n", i1 - 1);
+      const i3 = export1?.index || value.length
       const prefix = value.substring(i2 + 1, i1);
+      const rawCode = value.substring(i1+1, value.lastIndexOf('}',i3)+1);
+      const code = JSON.stringify(
+        rawCode
+          .replace(/\\/g, "&#92;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
+          .replace(/&/g, "&amp;")
+      )
       if (/^[\s+]*\/\/\s+/.test(prefix)) {
         title = prefix.replaceAll(/[(//) | (\s+)]/g, "");
       }
+
       v = v.replace(/export\s+const\s/g, "");
       imports.push(`import {${v} as ${cname}} from '${ip}'`);
-      const el = title ? `<><h2>${title}</h2><${cname}/></>` : `<${cname}/>`;
+      const el = `<DemoItem title="${title}" value=${code} view={<${cname}/>}/>`;
       components.push(el);
     }
     const element = `<><h1>${label}</h1><div>${components.join(
@@ -52,5 +67,5 @@ module.exports = async () => {
     ";\n"
   )}\nexport const routes = [${routes.join(",")}]`;
   fs.writeFileSync(path.resolve(__dirname, "../dev/src/route/route.js"), res);
-  console.log('更新目录');
+  console.log("更新目录");
 };

@@ -14,7 +14,9 @@ export const FDrawer: React.FC<FDrawerProps> = function (
   { direction = 'rtl',
     size = '50%',
     zIndex,
+    title,
     visible,
+    content,
     closeOnClickModal,
     onClose,
     showClose,
@@ -93,14 +95,16 @@ export const FDrawer: React.FC<FDrawerProps> = function (
         )
       }>
       <div className={classnames(styles['header'])}>
-        <div className={classnames(styles['title'])}>标题</div>
+        <div className={classnames(styles['title'])}>{title}</div>
         {
           showClose ? <FIconClose onClick={() => {
             onClose && onClose()
           }} className={styles['close-icon']} /> : undefined
         }
       </div>
-      <div className={classnames(styles['body'])}></div>
+      <div className={classnames(styles['body'])}>
+        {content}
+      </div>
       <div className={classnames(styles['footer'])}>
         {
           showCancel ? <FButton type="primary" onClick={() => {
