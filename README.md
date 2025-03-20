@@ -1,7 +1,7 @@
 # FebUi
 
 ## 1. Introduction
-This is a modern desktop component library built on React 19, developed with TypeScript, providing comprehensive type support. The library includes various categories of components: basic components (buttons, links, etc.), layout components, navigation components, input components, display components, and notification components.
+This is a modern desktop component library built on React 19, developed with TypeScript, providing comprehensive type support. The library includes various categories of components: basic components (buttons, links, etc.), layout components, navigation components, input components, display components, and notification components.If you want to see how do these components work,or learn using them component in your project,<a href="http://febui.intapter.cn/">click here</a> to visit the official website of FebUi.
 
 ## 2. Package
 - npm (https://www.npmjs.com/package/febui-react)

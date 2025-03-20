@@ -1,7 +1,7 @@
 # FebUi
 
 ## 1. 简介
-FebUi 是一个基于 React 19 开发的现代化桌面端组件库，采用 TypeScript 开发，提供完整的类型支持。组件库包含多个品类：基础组件（按钮、链接等）、布局组件、导航组件、输入组件、展示组件和消息提醒组件等。
+FebUi 是一个基于 React 19 开发的现代化桌面端组件库，采用 TypeScript 开发，提供完整的类型支持。组件库包含多个品类：基础组件（按钮、链接等）、布局组件、导航组件、输入组件、展示组件和消息提醒组件等。<a href="http://febui.intapter.cn/">点击这里</a>查看使用演示。
 
 ## 2. 包管理
 - npm ([febui-react](https://www.npmjs.com/package/febui-react))
