@@ -23,7 +23,7 @@
         top: 0;
         bottom: 5px;
         position: absolute;
-        z-index: 1;
+        z-index: 2;
     }
 
     .boundary-right {
@@ -32,7 +32,7 @@
         top: 0;
         bottom: 5px;
         position: absolute;
-        z-index: 1;
+        z-index: 2;
     }
 
     .scroll {
@@ -40,7 +40,7 @@
         width: 100%;
         height: 100%;
         overflow-x: auto;
-        overflow-y: scroll;
+        overflow-y: auto;
         position: relative;
 
         .table {
@@ -105,18 +105,19 @@
             }
 
             tr {
-                background: var(--text-color-15);
                 th {
+                    background: var(--text-color-15);
                     z-index: 0;
                     height: 2rem;
-                    background: var(--text-color-15);
 
                     &.fixed-left {
                         position: sticky;
+                        z-index: 1;
                     }
 
                     &.fixed-right {
                         position: sticky;
+                        z-index: 1;
                     }
                 }
 
