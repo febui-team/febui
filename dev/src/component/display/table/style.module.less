@@ -2,6 +2,8 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
 
     --border-color: var(--text-color-14);
@@ -34,8 +36,11 @@
     }
 
     .scroll {
+        flex: 1;
         width: 100%;
+        height: 100%;
         overflow-x: auto;
+        overflow-y: scroll;
         position: relative;
 
         .table {
@@ -45,10 +50,17 @@
             min-width: fit-content;
             position: relative;
 
+            thead th {
+                position: sticky;
+                top: 0;
+            }
+
             // 列边框
             &.column-div-solid {
                 td {
-                    &.fixed-left,&.fixed-right{
+
+                    &.fixed-left,
+                    &.fixed-right {
                         &:not(:last-child)::after {
                             content: '';
                             position: absolute;
@@ -59,7 +71,8 @@
                             border-right: 1px solid var(--border-color);
                         }
                     }
-                    &:not(.fixed-left,.fixed-right,:last-child){
+
+                    &:not(.fixed-left, .fixed-right, :last-child) {
                         border-right: 1px solid var(--border-color);
                     }
                 }
@@ -93,8 +106,8 @@
 
             tr {
                 background: var(--text-color-15);
-
                 th {
+                    z-index: 0;
                     height: 2rem;
                     background: var(--text-color-15);
 
@@ -108,17 +121,16 @@
                 }
 
                 td {
+                    
+                    z-index: 0;
                     background: var(--text-color-16);
 
                     &.fixed-left {
-                        z-index: 30;
                         position: sticky;
                     }
 
                     &.fixed-right {
-                        z-index: 30;
                         position: sticky;
-                        background: var(--text-color-16);
                     }
                 }
 
@@ -129,14 +141,16 @@
                     text-align: left;
                     padding: 5px 10px;
 
-                    &.fixed-left-boundary {
-                        border-left: 1px solid #aaa;
-                        z-index: 1000;
+                    &.align-left {
+                        text-align: left;
                     }
 
-                    &.select{
-                        left: 0;
+                    &.align-center {
                         text-align: center;
+                    }
+
+                    &.align-right {
+                        text-align: right;
                     }
                 }
             }

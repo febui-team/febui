@@ -21,6 +21,7 @@
   "scripts": {
     "start": "craco start",
     "build": "npx rollup -c --type=module",
+    "build-dev": "craco build",
     "route": "node ./src/route/generate.js",
     "test": "craco test",
     "eject": "react-scripts eject"

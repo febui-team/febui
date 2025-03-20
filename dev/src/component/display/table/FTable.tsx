@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { classnames } from "../../../utils/class.util"
 import styles from "./style.module.less"
 import { FTableColumn, FTableProps } from "./types";
@@ -11,7 +11,7 @@ import { isFunction } from "@/utils/type.util";
  * @author linqin.zhong
  * @date 2025/03/18 09:50:09
  */
-export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data, border, columnDiv, rowDiv, select }) {
+export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data, border, columnDiv, rowDiv, select, rowKey, selectLimit, onSelectChange, disableRow,style,className }) {
 
 
     const headRef = useRef<HTMLTableRowElement>(null)
@@ -47,37 +47,42 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
                 // TODO
                 template: (row) => {
                     const isChecked = selectRow.includes(row)
-                    return <FCheckbox checked={isChecked} onClick={() => {
+                    const isDisabled = disableRow && disableRow(row)
+                    return <FCheckbox disabled={
+                        isDisabled || (!!selectLimit && selectRow.length >= selectLimit && !isChecked)
+                    } checked={isChecked} onChange={() => {
                         if (!isChecked) {
                             setSelectRow([...selectRow, row])
                         } else {
                             setSelectRow(selectRow.filter(r => r !== row))
                         }
+                        if (onSelectChange) onSelectChange(selectRow)
                     }} />
                 },
-                headTemplate: <FCheckbox  onClick={() => {
-                    setSelectRow(selectRow.length > 0 || !data ? [] : [...data])
+                headTemplate: <FCheckbox disabled={!!selectLimit && selectRow.length === 0} onChange={() => {
+                    setSelectRow(selectRow.length > 0 || !data ? [] : disableRow ? data.filter((row) => !disableRow(row)) : [...data])
+                    if (onSelectChange) onSelectChange(selectRow)
                 }} indeterminate={selectRow.length > 0} />
             })
         } else if (select === 'single') {
             s.push({
                 name: 'select',
                 width: 50,
-                label: '',
+                label: '选择',
                 fixed: 'left',
+                align: 'center',
                 template: (row) => {
+                    const isDisabled = disableRow && disableRow(row)
                     const isChecked = selectRow[0] === row
-                    return <FRadio checked={isChecked} onChange={() => {
-                        console.log(row);
+                    return <FRadio disabled={isDisabled} checked={isChecked} onChange={() => {
                         setSelectRow(isChecked ? [] : [row])
-                    }}/>
+                    }} />
                 },
-                headTemplate: <>选择</>
             })
         }
         s.push(..._columns)
         return s
-    }, [select, _columns, selectRow, data])
+    }, [select, _columns, selectLimit, selectRow, disableRow, onSelectChange, data])
 
 
     useLayoutEffect(() => {
@@ -115,8 +120,10 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
 
     return (
         <div style={{
-            minWidth
+            ...style,
+            minWidth,
         }} className={classnames(
+            className,
             styles['table-wrapper'],
             border && styles[`border-${border}`],
         )}>
@@ -173,7 +180,8 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
                                             right: fixedRightMap ? fixedRightMap[columns.length - index - 1] : undefined
                                         }}
                                         className={classnames(
-                                            column.fixed && styles[`fixed-${column.fixed}`]
+                                            column.fixed && styles[`fixed-${column.fixed}`],
+                                            column.align && styles[`align-${column.align}`]
                                         )}
                                         key={index}>{
                                             column.headTemplate ? column.headTemplate : column.label
@@ -186,8 +194,8 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
                     <tbody>
                         {
 
-                            data?.map((row, key) => {
-                                return <tr key={key}>
+                            data?.map((row, j) => {
+                                return <tr key={rowKey ? row[rowKey] : j}>
                                     {
                                         columns.map((column, index) => {
 
@@ -197,7 +205,8 @@ export const FTable: React.FC<FTableProps> = function ({ columns: _columns, data
                                                     right: fixedRightMap ? fixedRightMap[columns.length - index - 1] : undefined
                                                 }}
                                                 className={classnames(
-                                                    column.fixed && styles[`fixed-${column.fixed}`]
+                                                    column.fixed && styles[`fixed-${column.fixed}`],
+                                                    column.align && styles[`align-${column.align}`]
                                                 )}
                                                 key={column.name}>{
                                                     column.template

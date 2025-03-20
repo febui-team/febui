@@ -26,7 +26,7 @@ export class FebIconSymbol {
     if (sameNameSymbol) return
     const pathStr = Array.isArray(path)
       ? path.map((p) => `<path d="${p.d}" fill="${p.fill} p-id="${p.id}"></path>`).join('')
-      : `<path d="${path.d}"${path.fill ? ` fill=${path.fill}` : ""}${path.id ? ` p-id=${path.id}` : ""}></path>`
+      : `<path  d="${path.d}"${path.fill ? ` fill=${path.fill}` : ""}${path.id ? ` p-id=${path.id}` : ""}></path>`
     __svg.innerHTML += `<symbol id="${this._name}" viewBox="0 0 1024 1024">${pathStr}</symbol>`;
   }
 }
