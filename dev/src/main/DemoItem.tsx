@@ -36,15 +36,18 @@ export const DemoItem: React.FC<{ value: string, view: ReactNode, title: string 
         </div>
         <FDrawer closeOnClickModal title={title} showClose onClose={() => {
             setShow(false)
-        }} visible={show} content={<AceEditor
-            theme="tomorrow"
-            mode='tsx'
-            readOnly
-            fontSize={16}
-            height="100%"
-            width="100%"
-            value={value}
-            wrapEnabled
-        />} />
+        }} visible={show} content={
+            <AceEditor
+                showPrintMargin
+                theme="tomorrow"
+                mode='tsx'
+                readOnly
+                fontSize={16}
+                height="100%"
+                width="100%"
+                value={value}
+                wrapEnabled
+            />
+        } />
     </div>
 }
