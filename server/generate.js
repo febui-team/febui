@@ -1,6 +1,6 @@
 /**
  * @file generate.js
- * @description 根据./dev/src/test目录下的文件生成路由配置，生成的文件路径为./dev/src/route/routes.js
+ * @description 根据./dev/src/test目录下的文件生成路由配置，生成的文件路径为./dev/src/main/routes.js
  * @example
  * node generate.js
  */
@@ -66,6 +66,6 @@ module.exports = async () => {
   const res = `/**\n * 路由配置，本文件由代码生成，请勿修改 \n * @file route.js\n */\n${imports.join(
     ";\n"
   )}\nexport const routes = [${routes.join(",")}]`;
-  fs.writeFileSync(path.resolve(__dirname, "../dev/src/route/route.js"), res);
+  fs.writeFileSync(path.resolve(__dirname, "../dev/src/main/route.js"), res);
   console.log("更新目录");
 };
