@@ -12,7 +12,7 @@ import { FButton } from "#/base/button/FButton"
 export const FProgressTest = function () {
   let v = 0
 
-  let task: any = null
+  const [task, setTask] = useState<any>(null)
   const [value, setValue] = useState(v)
   const increase = () => {
     if (v === 100) {
@@ -20,11 +20,14 @@ export const FProgressTest = function () {
     }
     if (task) {
       clearInterval(task)
+      setTask(task)
     }
-    task = setInterval(() => {
-      setValue(++v)
-      if (task && v >= 100) clearInterval(task)
-    }, 50 + Math.random() * 50)
+    setTask(
+      setInterval(() => {
+        setValue(++v)
+        if (task && v >= 100) clearInterval(task)
+      }, 50 + Math.random() * 50)
+    )
   }
   return (<>
     <FButton onClick={increase}>播放</FButton>
@@ -36,7 +39,7 @@ export const FProgressTest = function () {
 export const ThemeTest = function () {
   let v = 0
 
-  let task: any = null
+  const [task, setTask] = useState<any>(null)
   const [value, setValue] = useState(v)
   const increase = () => {
     if (v === 100) {
@@ -44,11 +47,14 @@ export const ThemeTest = function () {
     }
     if (task) {
       clearInterval(task)
+      setTask(task)
     }
-    task = setInterval(() => {
-      setValue(++v)
-      if (task && v >= 100) clearInterval(task)
-    }, 50 + Math.random() * 50)
+    setTask(
+      setInterval(() => {
+        setValue(++v)
+        if (task && v >= 100) clearInterval(task)
+      }, 50 + Math.random() * 50)
+    )
   }
   return (<>
     <FButton onClick={increase}>播放</FButton>
@@ -63,19 +69,22 @@ export const ThemeTest = function () {
 export const Test2 = function () {
   let v = 0
 
-  let task: any = null
+  const [task, setTask] = useState<any>(null)
   const [value, setValue] = useState(v)
   const increase = () => {
-    if (v >= 100) {
+    if (v === 100) {
       setValue(v = 0)
     }
     if (task) {
       clearInterval(task)
+      setTask(task)
     }
-    task = setInterval(() => {
-      setValue(v += 9.521)
-      if (task && v >= 100) clearInterval(task)
-    }, 500)
+    setTask(
+      setInterval(() => {
+        setValue(++v)
+        if (task && v >= 100) clearInterval(task)
+      }, 50 + Math.random() * 50)
+    )
   }
   return (<>
     <FButton onClick={increase}>播放</FButton>
@@ -89,7 +98,7 @@ export const Test2 = function () {
 export const Test3 = function () {
   let v = 0
 
-  let task: any = null
+  const [task, setTask] = useState<any>(null)
   const [value, setValue] = useState(v)
   const increase = () => {
     if (v === 100) {
@@ -97,11 +106,14 @@ export const Test3 = function () {
     }
     if (task) {
       clearInterval(task)
+      setTask(task)
     }
-    task = setInterval(() => {
-      setValue(++v)
-      if (task && v >= 100) clearInterval(task)
-    }, 100 + Math.random() * 50)
+    setTask(
+      setInterval(() => {
+        setValue(++v)
+        if (task && v >= 100) clearInterval(task)
+      }, 50 + Math.random() * 50)
+    )
   }
   return (<>
     <FButton onClick={increase}>播放</FButton>
