@@ -58,7 +58,7 @@ const FRadio: React.FC<FRadioProps> & Attr = function (props) {
 
     React.useEffect(() => {
         setActive(checked !== undefined ? checked : active)
-    }, [checked])
+    }, [active, checked])
 
 
     function handleClick(e: React.SyntheticEvent) {
