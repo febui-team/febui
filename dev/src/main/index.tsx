@@ -7,7 +7,6 @@ import { FLayoutAside } from '#/layout/layout/FLayoutAside'
 import { FLayoutContent } from '#/layout/layout/FLayoutContent'
 import { FLayoutHead } from '#/layout/layout/FLayoutHead'
 import { FLayoutFooter } from '#/layout/layout/FLayoutFooter'
-import { FButton } from '#/base/button/FButton'
 import { FMenu } from '#/nav/menu/FMenu'
 import { toast } from '@/api/toast'
 import { FIconMessage } from '+/FIconMessage'
@@ -15,37 +14,47 @@ import { FMenuItem } from '@/types/menu'
 import { QuickStart } from './pages/quickstart'
 import { DevTeaching } from './pages/dev-teaching'
 import { About } from './pages/about'
-
+import { FIconGithub } from '+/FIconGithub'
+import headStyles from './header.module.less'
+import FSwitch from '#/form/switch/FSwitch'
+import { FIconNpm } from '+/FIconNpm'
+import { classnames } from '@/utils/class.util'
+import FRadio from '#/form/radio/FRadio'
+import { RadioValue } from '@/types/radio'
 export const FebRoutes = function () {
     let tag = 0
     const location = useLocation()
     const nav = useNavigate()
     const [current, setCurrent] = useState(location.pathname)
-    const [asidePosition, setAsidePosition] = useState<"left" | "right">('left')
+    const [asidePosition, setAsidePosition] = useState<RadioValue>('left')
+    const docs = [{
+        name: 'docs',
+        label: '文档',
+        children: [
+            {
+                name: 'about',
+                path: '/about',
+                label: '关于FEB-UI',
+                element: <About />
+            },
+            {
+                name: 'quickstart',
+                path: '/quickstart',
+                label: '快速开始',
+                element: <QuickStart></QuickStart>
+            },
+            {
+                name: 'dev',
+                path: '/dev',
+                label: '如何开发',
+                element: <DevTeaching></DevTeaching>
+            }
+        ]
+    }]
     const menus: FMenuItem[] = [
+        ...docs,
         {
-            name: 'docs',
-            label: '文档',
-            children: [
-                {
-                    name: 'about',
-                    label: '关于FEB-UI',
-                    component: <About/>
-                },
-                {
-                    name: 'quickstart',
-                    label: '快速开始',
-                    element: <QuickStart></QuickStart>
-                },
-                {
-                    name: 'dev',
-                    label: '如何开发',
-                    element: <DevTeaching></DevTeaching>
-                }
-            ]
-        },
-        {
-            name: 'test',
+            name: 'components',
             label: '组件',
             children: routes.map(
                 (route: any) => {
@@ -81,19 +90,34 @@ export const FebRoutes = function () {
                 height: '100%',
                 width: '100%',
             }}>
-                <FLayoutHead height={50} showDiv style={{ background: 'var(--text-color-16)', justifyContent: 'space-between' }}>
-                    <div>FEB-UI组件库 - 开发调试工具</div>
-                    <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                        <span>侧边栏位置</span>
-                        <FButton size='small' shape='circle' type='primary' variant="dashed" onClick={
-                            () => {
-                                tag = Math.abs(tag - 1)
-                                setAsidePosition(tag === 0 ? 'left' : 'right')
+                <FLayoutHead height={50} showDiv className={headStyles['header']}>
+
+                    <div className={headStyles['left']}>
+                        <div>FebUi桌面组件库(For React19, 建设中...)</div>
+
+                    </div>
+                    <div className={headStyles['right']}>
+                        <FIconGithub onClick={() => {
+                            window.open('https://github.com/febui-team/febui', '__blank')
+                        }} className={classnames(headStyles['icon'], headStyles['github'])}></FIconGithub>
+                        <span>|</span>
+                        <FIconNpm onClick={() => {
+                            window.open('https://www.npmjs.com/package/febui-react', '__blank')
+                        }} className={classnames(headStyles['icon'], headStyles['npm'])}></FIconNpm>
+                        <span>|</span>
+                        <span>菜单位置</span>
+                        <FRadio.Group options={[
+                            {
+                                label: '左',
+                                value: 'left'
+                            },{
+                                label: '右',
+                                value: 'right'
                             }
-                        }>{asidePosition === 'left' ? '左' : '右'}</FButton>
+                        ]} type='button' variant='primary-filled' value={asidePosition} onChange={(value) => setAsidePosition(value)} size='small' />
                     </div>
                 </FLayoutHead>
-                <FLayoutAside position={asidePosition} width={200} sticky showDiv style={
+                <FLayoutAside position={asidePosition as 'left' | 'right'} width={200} sticky showDiv style={
                     {
                         height: '100vh',
                         display: 'flex',
@@ -113,7 +137,7 @@ export const FebRoutes = function () {
                     padding: 50
                 }}>
                     <div>
-                        {useRoutes(routes)}
+                        {useRoutes([...routes,...docs])}
                         <div onClick={() => {
                             toast.warn('糟糕，还没做好')
                         }} style={{

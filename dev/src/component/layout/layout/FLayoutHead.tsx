@@ -16,13 +16,14 @@ export const FLayoutHead: React.FC<FLayoutHeadProps> = function (
     sticky,
     children,
     height = 40,
-    style
+    style,
+    className
   }
 ) {
-  const className = classnames(styles.head)
-  if (showDiv) className.add(styles['show-div'])
-  if (sticky) className.add(styles['head-sticky'])
+  const cn = classnames(styles.head,className)
+  if (showDiv) cn.add(styles['show-div'])
+  if (sticky) cn.add(styles['head-sticky'])
   const _style = { ...style, height }
-  return <div style={_style} className={className}>{
+  return <div style={_style} className={cn}>{
     children}</div>
 }
